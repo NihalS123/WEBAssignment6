@@ -1,0 +1,42 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid flex justify-content-start">
+        <a class="navbar-brand" href="#">Naunihal Singh</a>
+        <div class="d-flex justify-content-between w-100">
+            <ul class="navbar-nav">
+                {{#navLink "/"}}Home{{/navLink}}
+                {{#navLink "/about"}}About{{/navLink}}
+                {{#navLink "/htmlDemo"}}HTML Demo{{/navLink}}
+            </ul>
+            <ul class="navbar-nav">
+                <div class="nav-show-on-login">
+                    {{#navLink "/students"}}Students{{/navLink}}
+                    {{#navLink "/courses"}}Courses{{/navLink}}
+                    <li class="nav-item"><a href="/logout" class="btn btn-primary">Logout</a></li>
+                </div>
+                
+                <div class="nav-hide-on-login">
+                    <li class="nav-item"><a href="/login" class="btn btn-primary">Login</a></li>
+                </div>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<script>
+    function getCookie(name) {
+        const value = `; ${document.cookie}`;
+        const parts = value.split(`; ${name}=`);
+        if (parts.length === 2) return parts.pop().split(';').shift();
+    } 
+
+    let showOnLogin = document.querySelector(".nav-show-on-login");
+    let hideOnLogin = document.querySelector(".nav-hide-on-login");
+
+    if(getCookie("isLoggedIn") == "true") {
+        showOnLogin.style.display = "flex";
+        hideOnLogin.style.display = "none";
+    } else {
+        showOnLogin.style.display = "none";
+        hideOnLogin.style.display = "flex";
+    }
+</script>
